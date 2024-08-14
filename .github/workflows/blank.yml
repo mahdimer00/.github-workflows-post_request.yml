@@ -1,0 +1,16 @@
+name: Run API Request Every 24 Hours
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # يشير هذا الكرون إلى تشغيل المهمة كل 24 ساعة (في منتصف الليل UTC)
+
+jobs:
+  run-api:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send POST Request
+      run: |
+        curl -X POST https://node.sidrachain.com/ \
+        -H "Content-Type: application/json" \
+        -d '{"jsonrpc":"2.0","id":"c273c3dd-82ac-4326-8b16-f4c471af1b97","method":"eth_getBalance","params":["0xDC40accF3d7Ee32d954dc48FFB8d9A95a21c7c41","latest"]}'
