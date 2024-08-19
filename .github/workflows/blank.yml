@@ -2,7 +2,7 @@ name: Run API Request Every 24 Hours
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # يشير هذا الكرون إلى تشغيل المهمة كل 24 ساعة (في منتصف الليل UTC)
+    - cron: '0 0 * * *'  # Runs the job every day at midnight UTC
 
 jobs:
   run-api:
@@ -10,7 +10,24 @@ jobs:
 
     steps:
     - name: Send POST Request
+      env:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
-        curl -X POST https://node.sidrachain.com/ \
-        -H "Content-Type: application/json" \
-        -d '{"jsonrpc":"2.0","id":"c273c3dd-82ac-4326-8b16-f4c471af1b97","method":"eth_getBalance","params":["0xDC40accF3d7Ee32d954dc48FFB8d9A95a21c7c41","latest"]}'
+        curl 'https://www.sidrachain.com/api/offchain/mine/' \
+          -X 'POST' \
+          -H 'authority: www.sidrachain.com' \
+          -H 'accept: */*' \
+          -H 'accept-language: en-US,en;q=0.9' \
+          -H "authorization: Bearer $API_TOKEN" \
+          -H 'content-length: 0' \
+          -H 'content-type: application/json' \
+          -H 'origin: https://www.sidrachain.com' \
+          -H 'referer: https://www.sidrachain.com/' \
+          -H 'sec-ch-ua: "Not-A.Brand";v="99", "Chromium";v="124"' \
+          -H 'sec-ch-ua-mobile: ?1' \
+          -H 'sec-ch-ua-platform: "Android"' \
+          -H 'sec-fetch-dest: empty' \
+          -H 'sec-fetch-mode: cors' \
+          -H 'sec-fetch-site: same-origin' \
+          -H 'user-agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36' \
+          --compressed
