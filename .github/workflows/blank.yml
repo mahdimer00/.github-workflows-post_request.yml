@@ -1,33 +1,34 @@
-name: Run API Request Every 24 Hours
+name: Run CURL Task 26 times every 24 hours
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs the job every day at midnight UTC
+    - cron: '0 0 * * *' # Runs every 24 hours at midnight UTC
 
 jobs:
-  run-api:
+  run-curl-task:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Send POST Request
-      env:
-        API_TOKEN: ${{ secrets.API_TOKEN }}
+    - name: Execute CURL Command 26 times
       run: |
-        curl 'https://www.sidrachain.com/api/offchain/mine/' \
-          -X 'POST' \
-          -H 'authority: www.sidrachain.com' \
-          -H 'accept: */*' \
-          -H 'accept-language: en-US,en;q=0.9' \
-          -H "authorization: Bearer $API_TOKEN" \
-          -H 'content-length: 0' \
-          -H 'content-type: application/json' \
-          -H 'origin: https://www.sidrachain.com' \
-          -H 'referer: https://www.sidrachain.com/' \
-          -H 'sec-ch-ua: "Not-A.Brand";v="99", "Chromium";v="124"' \
-          -H 'sec-ch-ua-mobile: ?1' \
-          -H 'sec-ch-ua-platform: "Android"' \
-          -H 'sec-fetch-dest: empty' \
-          -H 'sec-fetch-mode: cors' \
-          -H 'sec-fetch-site: same-origin' \
-          -H 'user-agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36' \
-          --compressed
+        for i in {1..26}
+        do
+          curl -X POST 'https://api.agent301.org/completeTask' \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 Edg/128.0.0.0' \
+            -H 'Accept: application/json, text/plain, */*' \
+            -H 'Accept-Encoding: gzip, deflate, br, zstd' \
+            -H 'Content-Type: application/json' \
+            -H 'sec-ch-ua: "Chromium";v="128", "Not;A=Brand";v="24", "Microsoft Edge";v="128", "Microsoft Edge WebView2";v="128"' \
+            -H 'sec-ch-ua-platform: "Windows"' \
+            -H 'sec-ch-ua-mobile: ?0' \
+            -H 'authorization: user=%7B%22id%22%3A7463343182%2C%22first_name%22%3A%22MAHDI%22%2C%22last_name%22%3A%22Mario%22%2C%22username%22%3A%22ccnssl%22%2C%22language_code%22%3A%22en%22%7D&chat_instance=5481715184037796040&chat_type=channel&auth_date=1725707310&hash=49a87b6f4450f6b042e3bbc86aca3fa47db744532a2563cd825dc8b4685adb18' \
+            -H 'origin: https://telegram.agent301.org' \
+            -H 'sec-fetch-site: same-site' \
+            -H 'sec-fetch-mode: cors' \
+            -H 'sec-fetch-dest: empty' \
+            -H 'referer: https://telegram.agent301.org/' \
+            -H 'accept-language: en-US,en;q=0.9' \
+            -H 'priority: u=1, i' \
+            -d '{"type":"video"}'
+          sleep 10 # Pause 10 seconds between requests (adjust as needed)
+        done
