@@ -21,7 +21,7 @@ jobs:
             -H 'sec-ch-ua: "Chromium";v="128", "Not;A=Brand";v="24", "Microsoft Edge";v="128", "Microsoft Edge WebView2";v="128"' \
             -H 'sec-ch-ua-platform: "Windows"' \
             -H 'sec-ch-ua-mobile: ?0' \
-            -H 'authorization: user=%7B%22id%22%3A7463343182%2C%22first_name%22%3A%22MAHDI%22%2C%22last_name%22%3A%22Mario%22%2C%22username%22%3A%22ccnssl%22%2C%22language_code%22%3A%22en%22%7D&chat_instance=5481715184037796040&chat_type=channel&auth_date=1725707310&hash=49a87b6f4450f6b042e3bbc86aca3fa47db744532a2563cd825dc8b4685adb18' \
+            -H 'authorization: user=%7B%22id%22%3A1077565489%2C%22first_name%22%3A%22Mehdi%22%2C%22last_name%22%3A%22%22%2C%22username%22%3A%22ccncvv%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&chat_instance=-8306884873642602183&chat_type=channel&auth_date=1726068892&hash=a2b551aff4eda86fecd61fb109be9c1f05228734bb0729e20b690d15b81b0885' \
             -H 'origin: https://telegram.agent301.org' \
             -H 'sec-fetch-site: same-site' \
             -H 'sec-fetch-mode: cors' \
